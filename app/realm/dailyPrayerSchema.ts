@@ -1,11 +1,12 @@
-// src/realm/dailyPrayerSchema.ts
+// app/realm/TodayPrayerSchema.ts
 import { ObjectSchema } from 'realm';
-import Realm, { BSON } from 'realm';
+import { BSON } from 'realm';
 
 export const TodayPrayerSchema: ObjectSchema = {
-  name: 'TodayPrayer',   // like TodayPrayerEntity
+  name: 'TodayPrayer',
+  primaryKey: '_id',
   properties: {
-    _id: { type: 'objectId', default: () => new Realm.BSON.ObjectId() },
+    _id: { type: 'objectId', default: () => new BSON.ObjectId() },
     fajr_adhan: 'string?',
     fajr_iqama: 'string?',
     dhuhr_adhan: 'string?',
@@ -18,8 +19,5 @@ export const TodayPrayerSchema: ObjectSchema = {
     isha_iqama: 'string?',
     jumaa_khutba: 'string?',
     jumaa_salah: 'string?',
-    // Realm requires specifying optional vs required. 
-    // The question mark after 'string' means it can be null/undefined.
   },
-  primaryKey: '_id',
 };

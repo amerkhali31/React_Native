@@ -1,12 +1,12 @@
-// src/realm/announcementSchema.ts
+// app/realm/AnnouncementSchema.ts
 import { ObjectSchema } from 'realm';
-import Realm, { BSON } from 'realm';
+import { BSON } from 'realm';
 
 export const AnnouncementSchema: ObjectSchema = {
-  name: 'Announcement',  // like AnnouncementEntity
+  name: 'Announcement',
+  primaryKey: '_id',
   properties: {
-    _id: { type: 'objectId', default: () => new Realm.BSON.ObjectId() },
+    _id: { type: 'objectId', default: () => new BSON.ObjectId() },
     url: 'string?',
   },
-  primaryKey: '_id',
 };

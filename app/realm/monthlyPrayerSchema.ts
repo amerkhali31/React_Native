@@ -1,18 +1,18 @@
-// src/realm/monthlyPrayerSchema.ts
+// app/realm/MonthlyPrayerSchema.ts
 import { ObjectSchema } from 'realm';
-import Realm, { BSON } from 'realm';
+import { BSON } from 'realm';
 
 export const MonthlyPrayerSchema: ObjectSchema = {
-  name: 'MonthlyPrayer',  // like MonthlyPrayerEntity
+  name: 'MonthlyPrayer',
+  primaryKey: '_id',
   properties: {
-    _id: { type: 'objectId', default: () => new Realm.BSON.ObjectId() },
+    _id: { type: 'objectId', default: () => new BSON.ObjectId() },
     fajr: 'string?',
     dhuhr: 'string?',
     asr: 'string?',
     maghrib: 'string?',
     isha: 'string?',
     sunrise: 'string?',
-    date: 'string?',
+    date: 'string?',  // 'yyyy-MM-dd'
   },
-  primaryKey: '_id',
 };
