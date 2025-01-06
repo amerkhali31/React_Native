@@ -2,38 +2,32 @@
 import React, { useEffect, useState } from 'react';
 import { View, Image, ActivityIndicator, StyleSheet, Dimensions } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-
-// << import your param list from RootNavigator:
-import { RootStackParamList } from '../navigation/RootNavigator';
+import { RootStackParamList } from '../../types/navigation';
 
 const { width, height } = Dimensions.get('window');
 
 export default function LoadScreen() {
-  // << Tell TypeScript: "navigation" is for RootStackParamList
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>(); // Typed navigation
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function initializeApp() {
-      // ... your loading logic, DataManager calls, etc.
-      setIsLoading(false);
+      // Perform loading tasks here...
 
-      // Now TS knows "MainTab" is valid:
+      setIsLoading(false);
+      // Navigate to MainTab
       navigation.reset({
         index: 0,
-        routes: [{ name: 'MainTab' }], 
+        routes: [{ name: 'MainTab' }], // 'MainTab' is now strongly typed
       });
     }
+
     initializeApp();
   }, []);
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../../assets/magrImage.png')}
-        style={styles.logo}
-        resizeMode="contain"
-      />
+      <Image source={require('../../assets/magrImage.png')} style={styles.logo} resizeMode="contain" />
       <ActivityIndicator size="large" color="#ffffff" />
     </View>
   );
